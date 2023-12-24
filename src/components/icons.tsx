@@ -4,7 +4,6 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  Command,
   CreditCard,
   File,
   FileText,
@@ -24,12 +23,13 @@ import {
   User,
   X,
   type LucideIcon,
+  ScrollText,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
 
 export const Icons = {
-  logo: Command,
+  logo: ScrollText,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
