@@ -6,7 +6,6 @@ import { cookies } from "next/headers";
 import { TRPCReactProvider } from "@/trpc/react";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,17 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <TRPCReactProvider cookies={cookies().toString()}>
-        <body
-          className={cn("min-h-screen flex-col antialiased", inter.className)}
-        >
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn("min-h-screen flex-col antialiased", inter.className)}
+      >
+        <TRPCReactProvider cookies={cookies().toString()}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Navbar />
             {children}
           </ThemeProvider>
-        </body>
-      </TRPCReactProvider>
+        </TRPCReactProvider>
+      </body>
     </html>
   );
 }
