@@ -1,6 +1,7 @@
-import { type User } from "@prisma/client";
+import { User } from "@prisma/client";
+import type { Icon } from "lucide-react";
 
-import { type Icons } from "@/components/icons";
+import { Icons } from "@/components/icons";
 
 export type NavItem = {
   title: string;
@@ -38,4 +39,9 @@ export type SiteConfig = {
 
 export type MarketingConfig = {
   mainNav: MainNavItem[];
+};
+
+export type DashboardConfig = {
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
 };
