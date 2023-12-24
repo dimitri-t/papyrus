@@ -4,11 +4,11 @@ import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/navbar";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create T3 App",
@@ -23,11 +23,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider cookies={cookies().toString()}>
-          {children}
-        </TRPCReactProvider>
-      </body>
+      <TRPCReactProvider cookies={cookies().toString()}>
+        <body
+          className={cn("min-h-screen flex-col antialiased", inter.className)}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </body>
+      </TRPCReactProvider>
     </html>
   );
 }
