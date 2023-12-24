@@ -9,11 +9,16 @@ import { Icons } from "@/components/icons";
 import { MobileNav } from "@/components/mobile-nav";
 import { siteConfig } from "@/config/site";
 import { useState } from "react";
+import { MainNavItem } from "@/types";
 
-const Navbar = () => {
+interface MainNavProps {
+  items?: MainNavItem[];
+  children?: React.ReactNode;
+}
+
+const Navbar = ({ items, children }: MainNavProps) => {
   const segment = useSelectedLayoutSegment();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
-  const items = marketingConfig.mainNav;
 
   return (
     <header className="container z-40 bg-background">
