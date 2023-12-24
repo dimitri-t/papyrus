@@ -31,6 +31,9 @@ const config = {
         checksVoidReturn: { attributes: false },
       },
     ],
+    // Disable the TypeScript specific rules for unsafe calls and assignments
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
   },
 };
 
