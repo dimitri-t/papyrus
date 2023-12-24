@@ -1,17 +1,11 @@
-import { Metadata } from "next";
 import Link from "next/link";
-
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
-import { UserAuthForm } from "@/components/user-auth-form";
-
-export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your account",
-};
 
 export default function LoginPage() {
+  const [isGitHubLoading, setIsGitHubLoading] = useState<boolean>(false);
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
@@ -34,7 +28,26 @@ export default function LoginPage() {
           </h1>
           <p className="text-sm text-muted-foreground">Sign in with Github </p>
         </div>
-        <UserAuthForm />
+
+        <div className={cn("grid gap-6", className)} {...props}>
+          <button
+            type="button"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            onClick={() => {
+              setIsGitHubLoading(true);
+              signIn("github");
+            }}
+            disabled={isGitHubLoading}
+          >
+            {isGitHubLoading ? (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Icons.gitHub className="mr-2 h-4 w-4" />
+            )}{" "}
+            Github
+          </button>
+        </div>
+
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/register"
