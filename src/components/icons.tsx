@@ -22,6 +22,7 @@ import {
   Twitter,
   User,
   X,
+  Cloud,
   type LucideIcon,
   ScrollText,
 } from "lucide-react";
@@ -30,6 +31,7 @@ export type Icon = LucideIcon;
 
 export const Icons = {
   logo: ScrollText,
+  cloud: Cloud,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
