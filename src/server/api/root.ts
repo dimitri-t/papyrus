@@ -1,13 +1,26 @@
-import { createTRPCRouter } from "@/server/api/trpc";
-import { exampleRouter } from "@/server/api/routers/example";
+import { z } from "zod";
+import { createTRPCRouter, protectedProcedure } from "./trpc";
+import { db } from "@/server/db";
+import { TRPCError } from "@trpc/server";
 
-/**
- * This is the primary router for your server.
- *
- * All routers added in /api/routers should be manually added here.
- */
 export const appRouter = createTRPCRouter({
-  example: exampleRouter,
+  getFile: protectedProcedure
+    .input(z.object({ key: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { session } = ctx;
+      const user = session.user;
+
+      const file = await db.file.findFirst({
+        where: {
+          key: input.key,
+          userId: user.id,
+        },
+      });
+
+      if (!file) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return file;
+    }),
 });
 
 // export type definition of API
