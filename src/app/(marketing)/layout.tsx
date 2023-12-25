@@ -4,7 +4,6 @@ import { marketingConfig } from "@/config/marketing";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { MainNav } from "@/components/main-nav";
-// import Navbar from "@/components/navbar";
 
 interface MarketingLayoutProps {
   children: React.ReactNode;
