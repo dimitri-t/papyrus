@@ -14,13 +14,13 @@ export function FileItem({ file }: FileItemProps) {
     <div className="flex items-center justify-between p-4">
       <div className="grid gap-1">
         <Link
-          href={`/editor/${file.id}`}
+          href={`/dashboard/${file.id}`}
           className="font-semibold hover:underline"
         >
           {file.name}
         </Link>
         <div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {formatDate(file.createdAt?.toDateString())}
           </p>
         </div>
