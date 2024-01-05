@@ -1,9 +1,9 @@
+import ChatWrapper from "@/components/chat/chat-wrapper";
 import PdfRenderer from "@/components/pdf-renderer";
 import { getCurrentUser } from "@/lib/session";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
 import { notFound, redirect } from "next/navigation";
-import React from "react";
 
 interface PageProps {
   params: {
@@ -38,8 +38,7 @@ const File = async ({ params }: PageProps) => {
         </div>
 
         <div className="flex-[0.75] shrink-0 border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0">
-          chat wrapper
-          {/* <ChatWrapper isSubscribed={plan.isSubscribed} fileId={file.id} /> */}
+          <ChatWrapper isSubscribed={false} fileId={file.id} />
         </div>
       </div>
     </div>

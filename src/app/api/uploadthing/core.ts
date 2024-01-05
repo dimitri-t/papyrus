@@ -1,6 +1,11 @@
 import { getServerAuthSession } from "@/server/auth";
 import { db } from "@/server/db";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
+import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+import { pinecone } from "@/lib/pinecone";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { PineconeStore } from "langchain/vectorstores/pinecone";
+import { env } from "@/env";
 
 const f = createUploadthing();
 
@@ -33,7 +38,7 @@ const onUploadComplete = async ({
 
   if (isFileExist) return;
 
-  await db.file.create({
+  const createdFile = await db.file.create({
     data: {
       key: file.key,
       name: file.name,
@@ -43,8 +48,41 @@ const onUploadComplete = async ({
     },
   });
 
-  console.log("Upload complete for userId:", metadata.userId);
-  console.log("file url", file.url);
+  try {
+    const response = await fetch(
+      `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+    );
+    const blob = await response.blob();
+
+    const loader = new PDFLoader(blob);
+
+    const pageLevelDocs = await loader.load();
+
+    const pagesAmt = pageLevelDocs.length;
+
+    // vectorise and index entire doc
+
+    const pineconeIndex = pinecone.Index("papyrus");
+
+    const embeddings = new OpenAIEmbeddings({
+      openAIApiKey: env.OPENAI_API_KEY,
+    });
+
+    await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
+      pineconeIndex,
+      namespace: createdFile.id,
+    });
+
+    await db.file.update({
+      data: { uploadStatus: "SUCCESS" },
+      where: { id: createdFile.id },
+    });
+  } catch (error) {
+    await db.file.update({
+      data: { uploadStatus: "FAILED" },
+      where: { id: createdFile.id },
+    });
+  }
 };
 
 export const ourFileRouter = {
