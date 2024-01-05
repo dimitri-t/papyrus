@@ -1,5 +1,7 @@
 import { User } from "@prisma/client";
 import type { Icon } from "lucide-react";
+import { type AppRouter } from "@/trpc";
+import { inferRouterOutputs } from "@trpc/server";
 
 import { Icons } from "@/components/icons";
 
@@ -45,3 +47,15 @@ export type DashboardConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
+
+type RouterOutput = inferRouterOutputs<AppRouter>;
+
+type Messages = RouterOutput["getFileMessages"]["messages"];
+
+type OmitText = Omit<Messages[number], "text">;
+
+type ExtendedText = {
+  text: string | JSX.Element;
+};
+
+export type ExtendedMessage = OmitText & ExtendedText;

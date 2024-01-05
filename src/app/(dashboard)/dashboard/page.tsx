@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/lib/session";
-import { db } from "@/server/db";
-import { authOptions } from "@/server/auth";
+import { getCurrentUser } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { authOptions } from "@/lib/auth";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { DashboardHeader } from "@/components/dashboard-header";
 import { FileItem } from "@/components/file-item";
@@ -35,7 +35,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {files?.length ? (
-          <div className="divide-border divide-y rounded-md border">
+          <div className="divide-y divide-border rounded-md border">
             {files.map((file) => (
               <FileItem key={file.id} file={file} />
             ))}

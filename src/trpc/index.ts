@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "./trpc";
-import { db } from "@/server/db";
+import { db } from "@/lib/db";
 import { TRPCError } from "@trpc/server";
 import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
 

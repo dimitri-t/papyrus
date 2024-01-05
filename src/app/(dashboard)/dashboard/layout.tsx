@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { dashboardConfig } from "@/config/dashboard";
-import { getCurrentUser } from "@/lib/session";
+import { getCurrentUser } from "@/lib/auth";
 import { MainNav } from "@/components/main-nav";
 import { DashboardNav } from "@/components/dashboard-nav";
 import { SiteFooter } from "@/components/site-footer";

@@ -1,9 +1,9 @@
 import { env } from "@/env";
 import { openai } from "@/lib/openai";
 import { pinecone } from "@/lib/pinecone";
-import { getCurrentUser } from "@/lib/session";
-import { SendMessageValidator } from "@/lib/validators/SendMessageValidator";
-import { db } from "@/server/db";
+import { getCurrentUser } from "@/lib/auth";
+import { SendMessageValidator } from "@/lib/validators/send-message-validator";
+import { db } from "@/lib/db";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { NextRequest } from "next/server";
