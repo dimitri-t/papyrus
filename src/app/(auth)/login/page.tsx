@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
@@ -32,10 +31,10 @@ export default function LoginPage() {
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>
-          <p className="text-muted-foreground text-sm">Sign in with Github </p>
+          <p className="text-sm text-muted-foreground">Sign in with Github </p>
         </div>
         <UserAuthForm />
-        <p className="text-muted-foreground px-8 text-center text-sm">
+        <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/register"
             className="hover:text-brand underline underline-offset-4"
