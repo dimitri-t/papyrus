@@ -55,6 +55,7 @@
     "react-textarea-autosize": "^8.5.3",
     "server-only": "^0.0.1",
     "simplebar-react": "^3.2.4",
+    "stripe": "^14.11.0",
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",

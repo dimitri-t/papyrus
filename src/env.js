@@ -28,6 +28,8 @@ export const env = createEnv({
     UPLOADTHING_APP_ID: z.string().min(1),
     PINECONE_API_KEY: z.string().min(1),
     OPENAI_API_KEY: z.string().min(1),
+    STRIPE_API_KEY: z.string().min(1),
+    STRIPE_SECRET_KEY: z.string().min(1),
   },
   client: {},
   runtimeEnv: {
@@ -41,5 +43,7 @@ export const env = createEnv({
     UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
     PINECONE_API_KEY: process.env.PINECONE_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    STRIPE_API_KEY: process.env.STRIPE_API_KEY,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   },
 });
