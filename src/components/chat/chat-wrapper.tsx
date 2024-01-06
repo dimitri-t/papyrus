@@ -5,7 +5,7 @@ import { ChevronLeft, Loader2, XCircle } from "lucide-react";
 import Link from "next/link";
 import ChatInput from "./chat-input";
 import { api } from "@/trpc/react";
-import { PLANS } from "@/config/stripe";
+import { PLANS } from "@/config/subscriptions";
 import { buttonVariants } from "../ui/button";
 import { ChatContextProvider } from "./chat-context";
 

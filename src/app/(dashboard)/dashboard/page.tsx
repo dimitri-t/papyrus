@@ -7,6 +7,7 @@ import { DashboardHeader } from "@/components/dashboard-header";
 import { FileItem } from "@/components/file-item";
 import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import FileUploadButton from "@/components/file-upload-button";
+import { getUserSubscriptionPlan } from "@/lib/subscription";
 
 export const metadata = {
   title: "Dashboard",
@@ -14,6 +15,7 @@ export const metadata = {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
+  const subscriptionPlan = await getUserSubscriptionPlan();
 
   if (!user) {
     redirect(authOptions?.pages?.signIn || "/login");
@@ -31,11 +33,11 @@ export default async function DashboardPage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="PDFs" text="Create and manage your PDF files.">
-        <FileUploadButton isSubscribed={false} />
+        <FileUploadButton isSubscribed={subscriptionPlan.isSubscribed} />
       </DashboardHeader>
       <div>
         {files?.length ? (
-          <div className="divide-border divide-y rounded-md border">
+          <div className="divide-y divide-border rounded-md border">
             {files.map((file) => (
               <FileItem key={file.id} file={file} />
             ))}
@@ -47,7 +49,7 @@ export default async function DashboardPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any PDF files yet. Start creating content.
             </EmptyPlaceholder.Description>
-            <FileUploadButton isSubscribed={false} />
+            <FileUploadButton isSubscribed={subscriptionPlan.isSubscribed} />
           </EmptyPlaceholder>
         )}
       </div>

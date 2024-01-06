@@ -45,7 +45,7 @@ export const POST = async (req: NextRequest) => {
 
   const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
     pineconeIndex,
-    namespace: file.id, // find our PDF in the index
+    namespace: file.id,
   });
 
   const results = await vectorStore.similaritySearch(message, 4);

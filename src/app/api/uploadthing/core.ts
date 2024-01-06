@@ -6,6 +6,8 @@ import { pinecone } from "@/lib/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { env } from "@/env";
+import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { PLANS } from "@/config/subscriptions";
 
 const f = createUploadthing();
 
@@ -15,8 +17,9 @@ const middleware = async () => {
   if (!session || !session.user || !session.user.id)
     throw new Error("Unauthorized");
 
-  // Whatever is returned here is accessible in onUploadComplete as `metadata`
-  return { userId: session.user.id };
+  const subscriptionPlan = await getUserSubscriptionPlan();
+
+  return { subscriptionPlan, userId: session.user.id };
 };
 
 const onUploadComplete = async ({
@@ -52,6 +55,7 @@ const onUploadComplete = async ({
     const response = await fetch(
       `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
     );
+
     const blob = await response.blob();
 
     const loader = new PDFLoader(blob);
@@ -60,8 +64,16 @@ const onUploadComplete = async ({
 
     const pagesAmt = pageLevelDocs.length;
 
-    // vectorise and index entire doc
+    const { subscriptionPlan } = metadata;
 
+    const { isSubscribed } = subscriptionPlan;
+
+    const isProExceeded =
+      pagesAmt > PLANS.find((plan) => plan.name === "Pro")!.pagesPerPdf;
+    const isFreeExceeded =
+      pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
+
+    // vectorize and index entire document
     const pineconeIndex = pinecone.Index("papyrus");
 
     const embeddings = new OpenAIEmbeddings({
@@ -73,10 +85,21 @@ const onUploadComplete = async ({
       namespace: createdFile.id,
     });
 
-    await db.file.update({
-      data: { uploadStatus: "SUCCESS" },
-      where: { id: createdFile.id },
-    });
+    if ((isSubscribed && isProExceeded) || (!isSubscribed && isFreeExceeded)) {
+      await db.file.update({
+        data: {
+          uploadStatus: "FAILED",
+        },
+        where: {
+          id: createdFile.id,
+        },
+      });
+    } else {
+      await db.file.update({
+        data: { uploadStatus: "SUCCESS" },
+        where: { id: createdFile.id },
+      });
+    }
   } catch (error) {
     await db.file.update({
       data: { uploadStatus: "FAILED" },
@@ -86,7 +109,10 @@ const onUploadComplete = async ({
 };
 
 export const ourFileRouter = {
-  pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
+  freePlanUploader: f({ pdf: { maxFileSize: "4MB" } })
+    .middleware(middleware)
+    .onUploadComplete(onUploadComplete),
+  proPlanUploader: f({ pdf: { maxFileSize: "16MB" } })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
 } satisfies FileRouter;

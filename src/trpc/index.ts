@@ -5,7 +5,7 @@ import { TRPCError } from "@trpc/server";
 import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
 import { absoluteUrl } from "@/lib/utils";
 import { stripe } from "@/lib/stripe";
-import { PLANS } from "@/config/stripe";
+import { PLANS } from "@/config/subscriptions";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
 
 export const appRouter = createTRPCRouter({

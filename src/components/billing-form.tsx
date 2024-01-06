@@ -36,7 +36,7 @@ const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
     });
 
   return (
-    <div className="mx-auto w-full max-w-5xl  px-2.5 md:px-20">
+    <div className="mx-auto w-full max-w-5xl px-2.5 md:px-20">
       <form
         className="mt-12"
         onSubmit={(e) => {

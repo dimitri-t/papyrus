@@ -1,7 +1,7 @@
-import { PLANS } from "@/config/stripe";
+import { PLANS } from "@/config/subscriptions";
 import { db } from "./db";
 import { getCurrentUser } from "./session";
-import { stripe } from './stripe';
+import { stripe } from "./stripe";
 
 export async function getUserSubscriptionPlan() {
   const user = await getCurrentUser();
