@@ -1,8 +1,7 @@
 import { User } from "@prisma/client";
 import type { Icon } from "lucide-react";
-import { type AppRouter } from "@/trpc";
+import { AppRouter } from "@/trpc";
 import { inferRouterOutputs } from "@trpc/server";
-
 import { Icons } from "@/components/icons";
 
 export type NavItem = {

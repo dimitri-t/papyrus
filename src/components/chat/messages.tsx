@@ -18,7 +18,7 @@ const Messages = ({ fileId }: MessagesProps) => {
     api.getFileMessages.useInfiniteQuery(
       {
         fileId,
-        limit: 10,
+        limit: INFINITE_QUERY_LIMIT,
       },
       {
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
@@ -29,7 +29,7 @@ const Messages = ({ fileId }: MessagesProps) => {
   const messages = data?.pages.flatMap((page) => page.messages);
 
   const loadingMessage = {
-    createdAt: new Date().toISOString(),
+    createdAt: new Date(),
     id: "loading-message",
     isUserMessage: false,
     text: (
