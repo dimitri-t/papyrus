@@ -31,10 +31,10 @@ export default function LoginPage() {
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>
-          <p className="text-sm text-muted-foreground">Sign in with Github </p>
+          <p className="text-muted-foreground text-sm">Sign in with Github </p>
         </div>
         <UserAuthForm />
-        <p className="px-8 text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground px-8 text-center text-sm">
           <Link
             href="/register"
             className="hover:text-brand underline underline-offset-4"

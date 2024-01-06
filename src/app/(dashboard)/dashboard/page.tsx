@@ -35,7 +35,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {files?.length ? (
-          <div className="divide-y divide-border rounded-md border">
+          <div className="divide-border divide-y rounded-md border">
             {files.map((file) => (
               <FileItem key={file.id} file={file} />
             ))}
