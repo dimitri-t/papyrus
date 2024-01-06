@@ -14,6 +14,16 @@ import {
   ScrollText,
   ArrowRight,
   FileText,
+  ChevronRight,
+  Settings,
+  CreditCard,
+  MoreVertical,
+  AlertTriangle,
+  HelpCircle,
+  Pizza,
+  Trash,
+  Laptop,
+  Image
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -24,13 +34,23 @@ export const Icons = {
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
-  page: File,
-  add: Plus,
-  arrowRight: ArrowRight,
   post: FileText,
+  page: File,
+  media: Image,
+  add: Plus,
   user: User,
+  arrowRight: ArrowRight,
   sun: SunMedium,
   moon: Moon,
+  chevronRight: ChevronRight,
+  settings: Settings,
+  billing: CreditCard,
+  ellipsis: MoreVertical,
+  warning: AlertTriangle,
+  help: HelpCircle,
+  pizza: Pizza,
+  trash: Trash,
+  laptop: Laptop,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
