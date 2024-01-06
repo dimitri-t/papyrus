@@ -6,7 +6,7 @@ import { DashboardShell } from "@/components/dashboard-shell";
 import { DashboardHeader } from "@/components/dashboard-header";
 import { FileItem } from "@/components/file-item";
 import { EmptyPlaceholder } from "@/components/empty-placeholder";
-import FileUploadButton from "@/components/file-upload-button";
+import FileUploadButton from "@/components/upload-button";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
 
 export const metadata = {
