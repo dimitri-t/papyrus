@@ -12,6 +12,7 @@ import {
   Cloud,
   type LucideIcon,
   ScrollText,
+  ArrowRight,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -24,6 +25,7 @@ export const Icons = {
   chevronLeft: ChevronLeft,
   page: File,
   add: Plus,
+  arrowRight: ArrowRight,
   user: User,
   sun: SunMedium,
   moon: Moon,
