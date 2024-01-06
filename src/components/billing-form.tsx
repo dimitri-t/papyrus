@@ -1,6 +1,6 @@
 "use client";
 
-import { getUserSubscriptionPlan } from "@/lib/stripe";
+import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { useToast } from "./ui/use-toast";
 import {
   Card,

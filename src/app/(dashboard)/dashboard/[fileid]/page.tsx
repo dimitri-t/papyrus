@@ -1,7 +1,8 @@
 import ChatWrapper from "@/components/chat/chat-wrapper";
 import PdfRenderer from "@/components/pdf-renderer";
-import { authOptions, getCurrentUser } from "@/lib/auth";
+import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { getCurrentUser } from '@/lib/session';
 import { notFound, redirect } from "next/navigation";
 
 interface PageProps {

@@ -4,8 +4,9 @@ import { db } from "@/lib/db";
 import { TRPCError } from "@trpc/server";
 import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
 import { absoluteUrl } from "@/lib/utils";
-import { getUserSubscriptionPlan, stripe } from "@/lib/stripe";
+import { stripe } from "@/lib/stripe";
 import { PLANS } from "@/config/stripe";
+import { getUserSubscriptionPlan } from "@/lib/subscription";
 
 export const appRouter = createTRPCRouter({
   getUserFiles: protectedProcedure.query(async ({ ctx }) => {

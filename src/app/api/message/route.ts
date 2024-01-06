@@ -1,7 +1,7 @@
 import { env } from "@/env";
 import { openai } from "@/lib/openai";
 import { pinecone } from "@/lib/pinecone";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/session";
 import { SendMessageValidator } from "@/lib/validators/send-message-validator";
 import { db } from "@/lib/db";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";

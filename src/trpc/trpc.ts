@@ -1,8 +1,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
-
-import { getServerAuthSession } from "@/lib/auth";
+import { getServerAuthSession } from "@/lib/session";
 import { db } from "@/lib/db";
 
 // CONTEXT

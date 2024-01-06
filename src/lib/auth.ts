@@ -1,9 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import {
-  getServerSession,
-  type DefaultSession,
-  type NextAuthOptions,
-} from "next-auth";
+import { type DefaultSession, type NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { env } from "@/env";
 import { db } from "@/lib/db";
@@ -41,12 +37,3 @@ export const authOptions: NextAuthOptions = {
     newUser: "/register",
   },
 };
-
-// HELPER FUNCTIONS
-export const getServerAuthSession = () => getServerSession(authOptions);
-
-export async function getCurrentUser() {
-  const session = await getServerSession(authOptions);
-
-  return session?.user;
-}

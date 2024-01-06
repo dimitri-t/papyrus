@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import UpgradeButton from "@/components/upgrade-button";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/session";
 
 export const metadata = {
   title: "Pricing",

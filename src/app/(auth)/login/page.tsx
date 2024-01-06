@@ -4,13 +4,19 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { UserAuthForm } from "@/components/user-auth-form";
+import { redirect } from "next/navigation";
+import { getServerAuthSession } from "@/lib/session";
 
 export const metadata: Metadata = {
   title: "Login",
   description: "Login to your account",
 };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await getServerAuthSession();
+
+  if (session) redirect("/dashboard");
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
@@ -31,10 +37,10 @@ export default function LoginPage() {
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>
-          <p className="text-muted-foreground text-sm">Sign in with Github </p>
+          <p className="text-sm text-muted-foreground">Sign in with Github </p>
         </div>
         <UserAuthForm />
-        <p className="text-muted-foreground px-8 text-center text-sm">
+        <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/register"
             className="hover:text-brand underline underline-offset-4"

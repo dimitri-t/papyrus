@@ -1,4 +1,4 @@
-import { getServerAuthSession } from "@/lib/auth";
+import { getServerAuthSession } from "@/lib/session";
 import { db } from "@/lib/db";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
