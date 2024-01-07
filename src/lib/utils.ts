@@ -48,7 +48,6 @@ export function constructMetadata({
     },
     icons,
     metadataBase: new URL("https://papyrus-pi.vercel.app"),
-    themeColor: "#FFF",
     ...(noIndex && {
       robots: {
         index: false,
