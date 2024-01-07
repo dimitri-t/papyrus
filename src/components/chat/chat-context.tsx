@@ -139,7 +139,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
                 if (!isAiResponseCreated) {
                   updatedMessages = [
                     {
-                      createdAt: new Date().toISOString(),
+                      createdAt: new Date(),
                       id: "ai-response",
                       text: accResponse,
                       isUserMessage: false,
@@ -177,7 +177,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       setMessage(backupMessage.current);
       utils.getFileMessages.setData(
         { fileId },
-        { messages: context?.previousMessages ?? [] },
+        { messages: context?.previousMessages ?? [], nextCursor: undefined },
       );
     },
     onSettled: async () => {
