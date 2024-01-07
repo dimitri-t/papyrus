@@ -7,6 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { cn, constructMetadata } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default async function RootLayout({
         <TRPCReactProvider cookies={cookies().toString()}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Toaster />
+            <SpeedInsights />
             {children}
           </ThemeProvider>
         </TRPCReactProvider>

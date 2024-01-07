@@ -1013,6 +1013,11 @@
   resolved "https://registry.yarnpkg.com/@uploadthing/shared/-/shared-6.0.3.tgz#24fcc11c57ce1dd2827e567f7c91b2141f3b638c"
   integrity sha512-gATWAg7cClqatJMDDaP0s9krijrsY5193ymRZDNkNbi0H8uH70/pP2W/7blV5dRNn6lwHJqL2LaHNcUounBd5Q==
 
+"@vercel/speed-insights@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.2.tgz#1bebf3e7c7046b6a911721233b263b69214ddb3e"
+  integrity sha512-y5HWeB6RmlyVYxJAMrjiDEz8qAIy2cit0fhBq+MD78WaUwQvuBnQlX4+5MuwVTWi46bV3klaRMq83u9zUy1KOg==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
