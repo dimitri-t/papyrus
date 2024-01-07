@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { db } from "@/lib/db";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
@@ -13,7 +14,7 @@ export async function POST(request: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET || "",
+      env.STRIPE_WEBHOOK_SECRET || "",
     );
   } catch (err) {
     return new Response(
