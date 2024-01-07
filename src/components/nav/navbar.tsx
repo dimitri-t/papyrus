@@ -1,21 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { UserAccountNav } from "./user-account-nav";
-import MobileNav from "./mobile-nav";
-import { Icons } from "./icons";
-import { cn } from "@/lib/utils";
+import { Icons } from "../icons";
 import { useState } from "react";
-import { User } from "next-auth";
+import MobileNav from "./mobile-nav";
 
-const Navbar = ({
-  user,
-  isSubscribed,
-}: {
-  user: User | undefined;
-  isSubscribed: boolean;
-}) => {
+const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
@@ -34,12 +24,6 @@ const Navbar = ({
             >
               Pricing
             </Link>
-            <Link
-              href="/dashboard"
-              className="flex items-center text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
-            >
-              Dashboard
-            </Link>
           </nav>
           <button
             className="flex items-center space-x-2 md:hidden"
@@ -50,21 +34,6 @@ const Navbar = ({
           </button>
           {showMobileMenu && <MobileNav />}
         </div>
-        <nav>
-          {!user ? (
-            <Link
-              href="/login"
-              className={cn(
-                buttonVariants({ variant: "secondary", size: "sm" }),
-                "px-4",
-              )}
-            >
-              Login
-            </Link>
-          ) : (
-            <UserAccountNav user={user} isSubscribed={false} />
-          )}
-        </nav>
       </div>
     </header>
   );

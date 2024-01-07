@@ -24,12 +24,6 @@ const MobileNav = () => {
           >
             Pricing
           </Link>
-          <Link
-            href="/dashboard"
-            className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline"
-          >
-            Dashboard
-          </Link>
         </nav>
       </div>
     </div>
