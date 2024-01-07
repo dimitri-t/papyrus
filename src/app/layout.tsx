@@ -34,12 +34,8 @@ export default async function RootLayout({
       >
         <TRPCReactProvider cookies={cookies().toString()}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <main>
-              <Navbar user={user} />
-              <Toaster />
-              {children}
-            </main>
-            <SiteFooter className="border-t" />
+            <Toaster />
+            {children}
           </ThemeProvider>
         </TRPCReactProvider>
       </body>
