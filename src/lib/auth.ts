@@ -14,26 +14,48 @@ declare module "next-auth" {
   }
 }
 
-//  Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
 export const authOptions: NextAuthOptions = {
-  callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
-  },
   adapter: PrismaAdapter(db),
+  pages: {
+    signIn: "/login",
+  },
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     GithubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
   ],
-  pages: {
-    signIn: "/login",
-    newUser: "/register",
+  callbacks: {
+    session: async ({ session, token }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: token.id,
+      },
+    }),
+    async jwt({ token, user }) {
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: token.email,
+        },
+      });
+
+      if (!dbUser) {
+        if (user) {
+          token.id = user?.id;
+        }
+        return token;
+      }
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+      };
+    },
   },
 };

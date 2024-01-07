@@ -15,6 +15,7 @@ export const metadata = {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
+
   const subscriptionPlan = await getUserSubscriptionPlan();
 
   if (!user) {

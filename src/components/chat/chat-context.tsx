@@ -27,7 +27,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
   const [message, setMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const utils = api.useContext();
+  const utils = api.useUtils();
 
   const { toast } = useToast();
 
