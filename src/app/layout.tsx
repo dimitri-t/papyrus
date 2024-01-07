@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { getCurrentUser } from "@/lib/session";
 import { SiteFooter } from "@/components/site-footer";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 

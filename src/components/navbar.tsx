@@ -56,10 +56,7 @@ const Navbar = ({ user }: { user: User | undefined }) => {
               Login
             </Link>
           ) : (
-            <UserAccountNav
-              user={user}
-              // isSubscribed={false}
-            />
+            <UserAccountNav user={user} />
           )}
         </nav>
       </div>

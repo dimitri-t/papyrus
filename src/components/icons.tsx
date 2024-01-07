@@ -23,7 +23,8 @@ import {
   Pizza,
   Trash,
   Laptop,
-  Image
+  Image,
+  Gem
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -50,6 +51,7 @@ export const Icons = {
   help: HelpCircle,
   pizza: Pizza,
   trash: Trash,
+  gem: Gem,
   laptop: Laptop,
   gitHub: ({ ...props }: LucideProps) => (
     <svg

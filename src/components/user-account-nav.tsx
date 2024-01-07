@@ -31,7 +31,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}
             {user.email && (
-              <p className="text-muted-foreground w-[200px] truncate text-sm">
+              <p className="w-[200px] truncate text-sm text-muted-foreground">
                 {user.email}
               </p>
             )}
@@ -41,12 +41,18 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuItem asChild>
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/billing">Billing</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/settings">Settings</Link>
-        </DropdownMenuItem>
+
+        {/* TODO */}
+        {/* <DropdownMenuItem asChild>
+          {subscriptionPlan?.isSubscribed ? (
+            <Link href="/dashboard/billing">Manage Subscription</Link>
+          ) : (
+            <Link href="/pricing">
+              Upgrade <Icons.gem className="ml-1.5 h-4 w-4 text-blue-600" />
+            </Link>
+          )}
+        </DropdownMenuItem> */}
+
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer"
