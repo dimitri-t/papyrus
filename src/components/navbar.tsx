@@ -9,7 +9,13 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { User } from "next-auth";
 
-const Navbar = ({ user }: { user: User | undefined }) => {
+const Navbar = ({
+  user,
+  isSubscribed,
+}: {
+  user: User | undefined;
+  isSubscribed: boolean;
+}) => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
@@ -56,7 +62,7 @@ const Navbar = ({ user }: { user: User | undefined }) => {
               Login
             </Link>
           ) : (
-            <UserAccountNav user={user} />
+            <UserAccountNav user={user} isSubscribed={false} />
           )}
         </nav>
       </div>

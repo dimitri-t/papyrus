@@ -12,12 +12,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { UserAvatar } from "@/components/user-avatar";
+import { Icons } from "./icons";
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, "name" | "image" | "email">;
+  isSubscribed: boolean;
 }
 
-export function UserAccountNav({ user }: UserAccountNavProps) {
+export function UserAccountNav({ user, isSubscribed }: UserAccountNavProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -42,16 +44,15 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
 
-        {/* TODO */}
-        {/* <DropdownMenuItem asChild>
-          {subscriptionPlan?.isSubscribed ? (
+        <DropdownMenuItem asChild>
+          {isSubscribed ? (
             <Link href="/dashboard/billing">Manage Subscription</Link>
           ) : (
             <Link href="/pricing">
               Upgrade <Icons.gem className="ml-1.5 h-4 w-4 text-blue-600" />
             </Link>
           )}
-        </DropdownMenuItem> */}
+        </DropdownMenuItem>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem

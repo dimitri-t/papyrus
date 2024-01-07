@@ -80,8 +80,8 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center rounded-md bg-white shadow">
-      <div className="flex h-14 w-full items-center justify-between border-b border-zinc-200 px-2">
+    <div className="flex w-full flex-col items-center rounded-md shadow">
+      <div className="flex h-14 w-full items-center justify-between rounded-tl-sm rounded-tr-sm border border-t border-zinc-200 px-2">
         <div className="flex items-center gap-1.5">
           <Button
             disabled={currPage <= 1}
