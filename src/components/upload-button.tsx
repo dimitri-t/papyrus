@@ -8,7 +8,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useUploadThing } from '@/lib/uploadthing';
 import { api } from '@/trpc/react';
 import Dropzone from 'react-dropzone';
-import { Progress } from './ui/progress';
+// import { Progress } from './ui/progress';
 import { useRouter } from 'next/navigation';
 
 const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
@@ -19,7 +19,16 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const { toast } = useToast();
 
   const { startUpload } = useUploadThing(
-    isSubscribed ? 'proPlanUploader' : 'freePlanUploader'
+    isSubscribed ? 'proPlanUploader' : 'freePlanUploader',
+    {
+      onUploadError: () => {
+        return toast({
+          title: 'Something went very',
+          description: 'Please try again later',
+          variant: 'destructive',
+        });
+      },
+    }
   );
 
   const { mutate: startPolling } = api.getFile.useMutation({
@@ -50,6 +59,18 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
     <Dropzone
       multiple={false}
       onDrop={async (acceptedFile) => {
+        // Check file size
+        const fileSize = acceptedFile[0]?.size ?? 0 * 1024 * 1024;
+        const allowedFileSize = (isSubscribed ? 64 : 16) * 1024 * 1024;
+
+        if (fileSize > allowedFileSize) {
+          return toast({
+            title: 'Unable to upload, file is too large',
+            description: 'Please try again later',
+            variant: 'default',
+          });
+        }
+
         setIsUploading(true);
 
         const progressInterval = startSimulatedProgress();
