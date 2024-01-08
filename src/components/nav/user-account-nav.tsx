@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { User } from "next-auth";
-import { signOut } from "next-auth/react";
+import Link from 'next/link';
+import { User } from 'next-auth';
+import { signOut } from 'next-auth/react';
 
 import {
   DropdownMenu,
@@ -10,9 +10,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { UserAvatar } from "@/components/user-avatar";
-import { Icons } from "../icons";
+} from '@/components/ui/dropdown-menu';
+import { UserAvatar } from '@/components/user-avatar';
+import { Icons } from '../icons';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: User | undefined;
@@ -32,7 +32,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           <div className="flex flex-col space-y-1 leading-none">
             {user?.name && <p className="font-medium">{user.name}</p>}
             {user?.email && (
-              <p className="w-[200px] truncate text-sm text-muted-foreground">
+              <p className="text-muted-foreground w-[200px] truncate text-sm">
                 {user.email}
               </p>
             )}
@@ -53,7 +53,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           onSelect={(event) => {
             event.preventDefault();
             signOut({
-              callbackUrl: "/",
+              callbackUrl: '/',
             });
           }}
         >

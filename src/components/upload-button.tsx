@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/icons";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
-import { useUploadThing } from "@/lib/uploadthing";
-import { api } from "@/trpc/react";
-import Dropzone from "react-dropzone";
-import { Progress } from "./ui/progress";
-import { useRouter } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { useState } from 'react';
+import { useToast } from '@/components/ui/use-toast';
+import { useUploadThing } from '@/lib/uploadthing';
+import { api } from '@/trpc/react';
+import Dropzone from 'react-dropzone';
+import { Progress } from './ui/progress';
+import { useRouter } from 'next/navigation';
 
 const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const router = useRouter();
@@ -19,7 +19,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const { toast } = useToast();
 
   const { startUpload } = useUploadThing(
-    isSubscribed ? "proPlanUploader" : "freePlanUploader",
+    isSubscribed ? 'proPlanUploader' : 'freePlanUploader'
   );
 
   const { mutate: startPolling } = api.getFile.useMutation({
@@ -58,9 +58,9 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
         if (!res) {
           return toast({
-            title: "Something went wrong",
-            description: "Please try again later",
-            variant: "destructive",
+            title: 'Something went wrong',
+            description: 'Please try again later',
+            variant: 'destructive',
           });
         }
 
@@ -70,9 +70,9 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
         if (!key) {
           return toast({
-            title: "Something went wrong",
-            description: "Please try again later",
-            variant: "destructive",
+            title: 'Something went wrong',
+            description: 'Please try again later',
+            variant: 'destructive',
           });
         }
 
@@ -99,7 +99,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                   and drop
                 </p>
                 <p className="text-xs text-zinc-500">
-                  PDF (up to {isSubscribed ? "16" : "4"}MB)
+                  PDF (up to {isSubscribed ? '16' : '4'}MB)
                 </p>
               </div>
 

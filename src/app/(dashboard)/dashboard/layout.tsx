@@ -1,10 +1,10 @@
-import "@/styles/globals.css";
-import "simplebar-react/dist/simplebar.min.css";
+import '@/styles/globals.css';
+import 'simplebar-react/dist/simplebar.min.css';
 
-import { getCurrentUser } from "@/lib/session";
-import { SiteFooter } from "@/components/footer";
-import Navbar from "@/components/nav/navbar";
-import { UserAccountNav } from "@/components/nav/user-account-nav";
+import { getCurrentUser } from '@/lib/session';
+import { SiteFooter } from '@/components/footer';
+import Navbar from '@/components/nav/navbar';
+import { UserAccountNav } from '@/components/nav/user-account-nav';
 
 export default async function RootLayout({
   children,

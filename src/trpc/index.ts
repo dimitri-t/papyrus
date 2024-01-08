@@ -1,12 +1,12 @@
-import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "./trpc";
-import { db } from "@/lib/db";
-import { TRPCError } from "@trpc/server";
-import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
-import { absoluteUrl } from "@/lib/utils";
-import { stripe } from "@/lib/stripe";
-import { PLANS } from "@/config/subscriptions";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { z } from 'zod';
+import { createTRPCRouter, protectedProcedure } from './trpc';
+import { db } from '@/lib/db';
+import { TRPCError } from '@trpc/server';
+import { INFINITE_QUERY_LIMIT } from '@/config/infinite-query';
+import { absoluteUrl } from '@/lib/utils';
+import { stripe } from '@/lib/stripe';
+import { PLANS } from '@/config/subscriptions';
+import { getUserSubscriptionPlan } from '@/lib/subscription';
 
 export const appRouter = createTRPCRouter({
   getUserFiles: protectedProcedure.query(async ({ ctx }) => {
@@ -29,7 +29,7 @@ export const appRouter = createTRPCRouter({
         },
       });
 
-      if (!file) return { status: "PENDING" as const };
+      if (!file) return { status: 'PENDING' as const };
 
       return { status: file.uploadStatus };
     }),
@@ -46,7 +46,7 @@ export const appRouter = createTRPCRouter({
         },
       });
 
-      if (!file) throw new TRPCError({ code: "NOT_FOUND" });
+      if (!file) throw new TRPCError({ code: 'NOT_FOUND' });
 
       return file;
     }),
@@ -63,7 +63,7 @@ export const appRouter = createTRPCRouter({
         },
       });
 
-      if (!file) throw new TRPCError({ code: "NOT_FOUND" });
+      if (!file) throw new TRPCError({ code: 'NOT_FOUND' });
 
       await db.file.delete({
         where: {
@@ -80,7 +80,7 @@ export const appRouter = createTRPCRouter({
         limit: z.number().min(1).max(100).nullish(),
         cursor: z.string().nullish(),
         fileId: z.string(),
-      }),
+      })
     )
     .query(async ({ ctx, input }) => {
       const { session } = ctx;
@@ -95,7 +95,7 @@ export const appRouter = createTRPCRouter({
         },
       });
 
-      if (!file) throw new TRPCError({ code: "NOT_FOUND" });
+      if (!file) throw new TRPCError({ code: 'NOT_FOUND' });
 
       const messages = await db.message.findMany({
         take: limit + 1,
@@ -103,7 +103,7 @@ export const appRouter = createTRPCRouter({
           fileId,
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         cursor: cursor ? { id: cursor } : undefined,
         select: {
@@ -130,10 +130,10 @@ export const appRouter = createTRPCRouter({
     const { session } = ctx;
     const userId = session.user.id;
 
-    const billingUrl = absoluteUrl("/dashboard/billing");
+    const billingUrl = absoluteUrl('/dashboard/billing');
     console.log({ session, billingUrl });
 
-    if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
+    if (!userId) throw new TRPCError({ code: 'UNAUTHORIZED' });
 
     const dbUser = await db.user.findFirst({
       where: {
@@ -141,7 +141,7 @@ export const appRouter = createTRPCRouter({
       },
     });
 
-    if (!dbUser) throw new TRPCError({ code: "UNAUTHORIZED" });
+    if (!dbUser) throw new TRPCError({ code: 'UNAUTHORIZED' });
 
     const subscriptionPlan = await getUserSubscriptionPlan();
 
@@ -157,12 +157,12 @@ export const appRouter = createTRPCRouter({
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: billingUrl,
       cancel_url: billingUrl,
-      payment_method_types: ["card"],
-      mode: "subscription",
-      billing_address_collection: "auto",
+      payment_method_types: ['card'],
+      mode: 'subscription',
+      billing_address_collection: 'auto',
       line_items: [
         {
-          price: PLANS.find((plan) => plan.name === "Pro")?.price.priceIds.test,
+          price: PLANS.find((plan) => plan.name === 'Pro')?.price.priceIds.test,
           quantity: 1,
         },
       ],

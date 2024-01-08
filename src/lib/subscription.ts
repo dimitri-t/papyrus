@@ -1,11 +1,11 @@
-import { PLANS } from "@/config/subscriptions";
-import { db } from "./db";
-import { getCurrentUser } from "./session";
-import { stripe } from "./stripe";
+import { PLANS } from '@/config/subscriptions';
+import { db } from './db';
+import { getCurrentUser } from './session';
+import { stripe } from './stripe';
 
 export async function getUserSubscriptionPlan() {
   const user = await getCurrentUser();
-  if (!user) throw new Error("User not found");
+  if (!user) throw new Error('User not found');
 
   if (!user.id) {
     return {
@@ -34,7 +34,7 @@ export async function getUserSubscriptionPlan() {
   const isSubscribed = Boolean(
     dbUser.stripePriceId &&
       dbUser.stripeCurrentPeriodEnd && // 86400000 = 1 day
-      dbUser.stripeCurrentPeriodEnd.getTime() + 86_400_000 > Date.now(),
+      dbUser.stripeCurrentPeriodEnd.getTime() + 86_400_000 > Date.now()
   );
 
   const plan = isSubscribed
@@ -44,7 +44,7 @@ export async function getUserSubscriptionPlan() {
   let isCanceled = false;
   if (isSubscribed && dbUser.stripeSubscriptionId) {
     const stripePlan = await stripe.subscriptions.retrieve(
-      dbUser.stripeSubscriptionId,
+      dbUser.stripeSubscriptionId
     );
     isCanceled = stripePlan.cancel_at_period_end;
   }

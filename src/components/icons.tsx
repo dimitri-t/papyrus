@@ -24,8 +24,8 @@ import {
   Trash,
   Laptop,
   Image,
-  Gem
-} from "lucide-react";
+  Gem,
+} from 'lucide-react';
 
 export type Icon = LucideIcon;
 

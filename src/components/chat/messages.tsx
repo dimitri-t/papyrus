@@ -1,11 +1,11 @@
-import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
-import { Loader2, MessageSquare } from "lucide-react";
-import Skeleton from "react-loading-skeleton";
-import Message from "./message";
-import { useContext, useEffect, useRef } from "react";
-import { ChatContext } from "./chat-context";
-import { useIntersection } from "@mantine/hooks";
-import { api } from "@/trpc/react";
+import { INFINITE_QUERY_LIMIT } from '@/config/infinite-query';
+import { Loader2, MessageSquare } from 'lucide-react';
+import Skeleton from 'react-loading-skeleton';
+import Message from './message';
+import { useContext, useEffect, useRef } from 'react';
+import { ChatContext } from './chat-context';
+import { useIntersection } from '@mantine/hooks';
+import { api } from '@/trpc/react';
 
 interface MessagesProps {
   fileId: string;
@@ -23,14 +23,14 @@ const Messages = ({ fileId }: MessagesProps) => {
       {
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
         keepPreviousData: true,
-      },
+      }
     );
 
   const messages = data?.pages.flatMap((page) => page.messages);
 
   const loadingMessage = {
     createdAt: new Date(),
-    id: "loading-message",
+    id: 'loading-message',
     isUserMessage: false,
     text: (
       <span className="flex h-full items-center justify-center">

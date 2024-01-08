@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/icons";
+import { useTheme } from 'next-themes';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
@@ -11,7 +11,7 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className="h-9 w-9 rounded-md border"
     >
       <Icons.sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

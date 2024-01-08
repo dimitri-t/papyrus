@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
+import { Icons } from '@/components/icons';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -12,7 +12,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
         <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
           <Icons.logo />
           <p className="text-center text-sm leading-loose md:text-left">
-            Built by{" "}
+            Built by{' '}
             <a
               href={siteConfig.links.github}
               target="_blank"
@@ -21,7 +21,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               dimitri-t
             </a>
-            . Hosted on{" "}
+            . Hosted on{' '}
             <a
               href="https://vercel.com"
               target="_blank"
@@ -30,7 +30,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </a>
-            . The source code is available on{" "}
+            . The source code is available on{' '}
             <a
               href={siteConfig.links.github}
               target="_blank"

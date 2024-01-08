@@ -1,16 +1,16 @@
-import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/lib/session";
-import { db } from "@/lib/db";
-import { authOptions } from "@/lib/auth";
-import { DashboardShell } from "@/components/dashboard-shell";
-import { DashboardHeader } from "@/components/dashboard-header";
-import { FileItem } from "@/components/file-item";
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
-import FileUploadButton from "@/components/upload-button";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { redirect } from 'next/navigation';
+import { getCurrentUser } from '@/lib/session';
+import { db } from '@/lib/db';
+import { authOptions } from '@/lib/auth';
+import { DashboardShell } from '@/components/dashboard-shell';
+import { DashboardHeader } from '@/components/dashboard-header';
+import { FileItem } from '@/components/file-item';
+import { EmptyPlaceholder } from '@/components/empty-placeholder';
+import FileUploadButton from '@/components/upload-button';
+import { getUserSubscriptionPlan } from '@/lib/subscription';
 
 export const metadata = {
-  title: "Dashboard",
+  title: 'Dashboard',
 };
 
 export default async function DashboardPage() {
@@ -19,7 +19,7 @@ export default async function DashboardPage() {
   const subscriptionPlan = await getUserSubscriptionPlan();
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login");
+    redirect(authOptions?.pages?.signIn || '/login');
   }
 
   const files = await db.file.findMany({
@@ -27,7 +27,7 @@ export default async function DashboardPage() {
       userId: user.id,
     },
     orderBy: {
-      updatedAt: "desc",
+      updatedAt: 'desc',
     },
   });
 
@@ -38,7 +38,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {files?.length ? (
-          <div className="divide-y divide-border rounded-md border">
+          <div className="divide-border divide-y rounded-md border">
             {files.map((file) => (
               <FileItem key={file.id} file={file} />
             ))}

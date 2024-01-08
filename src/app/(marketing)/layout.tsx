@@ -1,11 +1,11 @@
-import "@/styles/globals.css";
-import "simplebar-react/dist/simplebar.min.css";
+import '@/styles/globals.css';
+import 'simplebar-react/dist/simplebar.min.css';
 
-import { SiteFooter } from "@/components/footer";
-import Navbar from "@/components/nav/navbar";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { SiteFooter } from '@/components/footer';
+import Navbar from '@/components/nav/navbar';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export default async function RootLayout({
   children,
@@ -21,8 +21,8 @@ export default async function RootLayout({
             <Link
               href="/login"
               className={cn(
-                buttonVariants({ variant: "secondary", size: "sm" }),
-                "px-4",
+                buttonVariants({ variant: 'secondary', size: 'sm' }),
+                'px-4'
               )}
             >
               Login

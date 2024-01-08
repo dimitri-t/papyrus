@@ -1,10 +1,10 @@
-import ChatWrapper from "@/components/chat/chat-wrapper";
-import PdfRenderer from "@/components/pdf-renderer";
-import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/session";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
-import { notFound, redirect } from "next/navigation";
+import ChatWrapper from '@/components/chat/chat-wrapper';
+import PdfRenderer from '@/components/pdf-renderer';
+import { authOptions } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { getCurrentUser } from '@/lib/session';
+import { getUserSubscriptionPlan } from '@/lib/subscription';
+import { notFound, redirect } from 'next/navigation';
 
 interface PageProps {
   params: {
@@ -18,7 +18,7 @@ const File = async ({ params }: PageProps) => {
   const { isSubscribed } = await getUserSubscriptionPlan();
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login");
+    redirect(authOptions?.pages?.signIn || '/login');
   }
 
   const file = await db.file.findFirst({

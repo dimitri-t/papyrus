@@ -1,8 +1,8 @@
-import { ReactNode, createContext, useRef, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { useToast } from "../ui/use-toast";
-import { api } from "@/trpc/react";
-import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
+import { ReactNode, createContext, useRef, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useToast } from '../ui/use-toast';
+import { api } from '@/trpc/react';
+import { INFINITE_QUERY_LIMIT } from '@/config/infinite-query';
 
 type StreamResponse = {
   addMessage: () => void;
@@ -13,7 +13,7 @@ type StreamResponse = {
 
 export const ChatContext = createContext<StreamResponse>({
   addMessage: () => {},
-  message: "",
+  message: '',
   handleInputChange: () => {},
   isLoading: false,
 });
@@ -24,19 +24,19 @@ interface Props {
 }
 
 export const ChatContextProvider = ({ fileId, children }: Props) => {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const utils = api.useUtils();
 
   const { toast } = useToast();
 
-  const backupMessage = useRef("");
+  const backupMessage = useRef('');
 
   const { mutate: sendMessage } = useMutation({
     mutationFn: async ({ message }: { message: string }) => {
-      const response = await fetch("/api/message", {
-        method: "POST",
+      const response = await fetch('/api/message', {
+        method: 'POST',
         body: JSON.stringify({
           fileId,
           message,
@@ -44,14 +44,14 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error('Failed to send message');
       }
 
       return response.body;
     },
     onMutate: async ({ message }) => {
       backupMessage.current = message;
-      setMessage("");
+      setMessage('');
 
       await utils.getFileMessages.cancel();
 
@@ -87,7 +87,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
             ...old,
             pages: newPages,
           };
-        },
+        }
       );
 
       setIsLoading(true);
@@ -102,9 +102,9 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
 
       if (!stream) {
         return toast({
-          title: "There was a problem sending this message",
-          description: "Please refresh this page and try again",
-          variant: "destructive",
+          title: 'There was a problem sending this message',
+          description: 'Please refresh this page and try again',
+          variant: 'destructive',
         });
       }
 
@@ -113,7 +113,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       let done = false;
 
       // accumulated response
-      let accResponse = "";
+      let accResponse = '';
 
       while (!done) {
         const { value, done: doneReading } = await reader.read();
@@ -129,7 +129,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
             if (!old) return { pages: [], pageParams: [] };
 
             let isAiResponseCreated = old.pages.some((page) =>
-              page.messages.some((message) => message.id === "ai-response"),
+              page.messages.some((message) => message.id === 'ai-response')
             );
 
             let updatedPages = old.pages.map((page) => {
@@ -140,7 +140,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
                   updatedMessages = [
                     {
                       createdAt: new Date(),
-                      id: "ai-response",
+                      id: 'ai-response',
                       text: accResponse,
                       isUserMessage: false,
                     },
@@ -148,7 +148,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
                   ];
                 } else {
                   updatedMessages = page.messages.map((message) => {
-                    if (message.id === "ai-response") {
+                    if (message.id === 'ai-response') {
                       return {
                         ...message,
                         text: accResponse,
@@ -168,7 +168,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
             });
 
             return { ...old, pages: updatedPages };
-          },
+          }
         );
       }
     },
@@ -177,7 +177,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       setMessage(backupMessage.current);
       utils.getFileMessages.setData(
         { fileId },
-        { messages: context?.previousMessages ?? [], nextCursor: undefined },
+        { messages: context?.previousMessages ?? [], nextCursor: undefined }
       );
     },
     onSettled: async () => {

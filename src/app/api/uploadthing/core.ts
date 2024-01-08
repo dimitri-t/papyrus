@@ -1,13 +1,13 @@
-import { getServerAuthSession } from "@/lib/session";
-import { db } from "@/lib/db";
-import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { pinecone } from "@/lib/pinecone";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
-import { env } from "@/env";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
-import { PLANS } from "@/config/subscriptions";
+import { getServerAuthSession } from '@/lib/session';
+import { db } from '@/lib/db';
+import { createUploadthing, type FileRouter } from 'uploadthing/next';
+import { PDFLoader } from 'langchain/document_loaders/fs/pdf';
+import { pinecone } from '@/lib/pinecone';
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
+import { PineconeStore } from 'langchain/vectorstores/pinecone';
+import { env } from '@/env';
+import { getUserSubscriptionPlan } from '@/lib/subscription';
+import { PLANS } from '@/config/subscriptions';
 
 const f = createUploadthing();
 
@@ -15,7 +15,7 @@ const middleware = async () => {
   const session = await getServerAuthSession();
 
   if (!session || !session.user || !session.user.id)
-    throw new Error("Unauthorized");
+    throw new Error('Unauthorized');
 
   const subscriptionPlan = await getUserSubscriptionPlan();
 
@@ -47,13 +47,13 @@ const onUploadComplete = async ({
       name: file.name,
       userId: metadata.userId,
       url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
-      uploadStatus: "PROCESSING",
+      uploadStatus: 'PROCESSING',
     },
   });
 
   try {
     const response = await fetch(
-      `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+      `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`
     );
 
     const blob = await response.blob();
@@ -69,12 +69,12 @@ const onUploadComplete = async ({
     const { isSubscribed } = subscriptionPlan;
 
     const isProExceeded =
-      pagesAmt > PLANS.find((plan) => plan.name === "Pro")!.pagesPerPdf;
+      pagesAmt > PLANS.find((plan) => plan.name === 'Pro')!.pagesPerPdf;
     const isFreeExceeded =
-      pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
+      pagesAmt > PLANS.find((plan) => plan.name === 'Free')!.pagesPerPdf;
 
     // vectorize and index entire document
-    const pineconeIndex = pinecone.Index("papyrus");
+    const pineconeIndex = pinecone.Index('papyrus');
 
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: env.OPENAI_API_KEY,
@@ -88,7 +88,7 @@ const onUploadComplete = async ({
     if ((isSubscribed && isProExceeded) || (!isSubscribed && isFreeExceeded)) {
       await db.file.update({
         data: {
-          uploadStatus: "FAILED",
+          uploadStatus: 'FAILED',
         },
         where: {
           id: createdFile.id,
@@ -96,23 +96,23 @@ const onUploadComplete = async ({
       });
     } else {
       await db.file.update({
-        data: { uploadStatus: "SUCCESS" },
+        data: { uploadStatus: 'SUCCESS' },
         where: { id: createdFile.id },
       });
     }
   } catch (error) {
     await db.file.update({
-      data: { uploadStatus: "FAILED" },
+      data: { uploadStatus: 'FAILED' },
       where: { id: createdFile.id },
     });
   }
 };
 
 export const ourFileRouter = {
-  freePlanUploader: f({ pdf: { maxFileSize: "16MB" } })
+  freePlanUploader: f({ pdf: { maxFileSize: '16MB' } })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
-  proPlanUploader: f({ pdf: { maxFileSize: "64MB" } })
+  proPlanUploader: f({ pdf: { maxFileSize: '64MB' } })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
 } satisfies FileRouter;

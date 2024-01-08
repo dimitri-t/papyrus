@@ -1,26 +1,26 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { type DefaultSession, type NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
-import { env } from "@/env";
-import { db } from "@/lib/db";
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { type DefaultSession, type NextAuthOptions } from 'next-auth';
+import GithubProvider from 'next-auth/providers/github';
+import { env } from '@/env';
+import { db } from '@/lib/db';
 
 // Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
 // object and keep type safety.
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string;
-    } & DefaultSession["user"];
+    } & DefaultSession['user'];
   }
 }
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   providers: [
     GithubProvider({

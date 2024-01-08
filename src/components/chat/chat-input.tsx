@@ -1,8 +1,8 @@
-import { Send } from "lucide-react";
-import { useContext, useRef } from "react";
-import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
-import { ChatContext } from "./chat-context";
+import { Send } from 'lucide-react';
+import { useContext, useRef } from 'react';
+import { Button } from '../ui/button';
+import { Textarea } from '../ui/textarea';
+import { ChatContext } from './chat-context';
 
 interface ChatInputProps {
   isDisabled?: boolean;
@@ -28,7 +28,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
                 onChange={handleInputChange}
                 value={message}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
+                  if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
 
                     addMessage();

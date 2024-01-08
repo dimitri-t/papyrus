@@ -1,4 +1,4 @@
-await import("./src/env.js");
+await import('./src/env.js');
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -8,7 +8,7 @@ const config = {
     return config;
   },
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ['avatars.githubusercontent.com'],
   },
 };
 

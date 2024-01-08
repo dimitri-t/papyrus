@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { File } from "@prisma/client";
+import Link from 'next/link';
+import { File } from '@prisma/client';
 
-import { formatDate } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
+import { formatDate } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 // import { FileOperations } from "@/components/File-operations"
 
 interface FileItemProps {
-  file: Pick<File, "id" | "name" | "createdAt">;
+  file: Pick<File, 'id' | 'name' | 'createdAt'>;
 }
 
 export function FileItem({ file }: FileItemProps) {

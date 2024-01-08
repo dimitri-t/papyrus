@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { ArrowRight } from "lucide-react";
-import { Button } from "./ui/button";
-import { api } from "@/trpc/react";
+import { ArrowRight } from 'lucide-react';
+import { Button } from './ui/button';
+import { api } from '@/trpc/react';
 
 const UpgradeButton = () => {
   const { mutate: createStripeSession } = api.createStripeSession.useMutation({
     onSuccess: ({ url }) => {
-      window.location.href = url ?? "/dashboard/billing";
+      window.location.href = url ?? '/dashboard/billing';
     },
   });
 
