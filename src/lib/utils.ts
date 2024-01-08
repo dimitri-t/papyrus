@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { ClassValue, clsx } from "clsx";
 import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
@@ -16,9 +17,7 @@ export function formatDate(input: string | number): string {
 }
 
 export function absoluteUrl(path: string) {
-  if (typeof window !== "undefined") return path;
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}${path}`;
-  return `http://localhost:${process.env.PORT ?? 3000}${path}`;
+  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
 
 export function constructMetadata({
