@@ -99,7 +99,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                   and drop
                 </p>
                 <p className="text-xs text-zinc-500">
-                  PDF (up to {isSubscribed ? '16' : '4'}MB)
+                  PDF (up to {isSubscribed ? '64' : '16'}MB)
                 </p>
               </div>
 
@@ -108,7 +108,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                   <div className="grid h-full place-items-center px-3 py-2">
                     <Icons.page className="h-4 w-4 text-blue-500" />
                   </div>
-                  <div className="h-full truncate px-3 py-2 text-sm">
+                  <div className="h-full truncate px-3 py-2 text-sm text-black">
                     {acceptedFiles[0].name}
                   </div>
                 </div>
@@ -116,10 +116,16 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
               {isUploading ? (
                 <div className="mx-auto mt-4 w-full max-w-xs">
-                  <Progress
+                  {/* <Progress
                     value={uploadProgress}
-                    className="h-1 w-full bg-zinc-200"
-                  />
+                    className="h-1 w-full bg-zinc-200 text-black"
+                  /> */}
+                  {uploadProgress !== 100 ? (
+                    <div className="flex items-center justify-center gap-1 pt-2 text-center text-sm text-zinc-700">
+                      <Icons.spinner className="h-3 w-3 animate-spin" />
+                      Uploading file...
+                    </div>
+                  ) : null}
                   {uploadProgress === 100 ? (
                     <div className="flex items-center justify-center gap-1 pt-2 text-center text-sm text-zinc-700">
                       <Icons.spinner className="h-3 w-3 animate-spin" />
