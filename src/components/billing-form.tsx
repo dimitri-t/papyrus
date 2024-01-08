@@ -21,8 +21,6 @@ interface BillingFormProps {
 const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
   const { toast } = useToast();
 
-  console.log({ subscriptionPlan });
-
   const { mutate: createStripeSession, isLoading } =
     api.createStripeSession.useMutation({
       onSuccess: ({ url }) => {

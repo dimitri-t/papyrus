@@ -131,6 +131,7 @@ export const appRouter = createTRPCRouter({
     const userId = session.user.id;
 
     const billingUrl = absoluteUrl("/dashboard/billing");
+    console.log({ session, billingUrl });
 
     if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
 
