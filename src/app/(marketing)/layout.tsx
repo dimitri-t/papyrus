@@ -14,7 +14,7 @@ export default async function RootLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="container z-40 bg-background">
+      <header className="container z-40">
         <div className="flex h-20 items-center justify-between py-6">
           <Navbar />
           <nav>
