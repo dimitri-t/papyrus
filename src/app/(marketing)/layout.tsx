@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import "simplebar-react/dist/simplebar.min.css";
 
-import { SiteFooter } from "@/components/site-footer";
+import { SiteFooter } from "@/components/footer";
 import Navbar from "@/components/nav/navbar";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";

@@ -6,6 +6,6 @@ export const siteConfig: SiteConfig = {
   url: "",
   ogImage: "",
   links: {
-    github: "",
+    github: "https://github.com/dimitri-t/papyrus",
   },
 };

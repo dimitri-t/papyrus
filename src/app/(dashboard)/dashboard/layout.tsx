@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import "simplebar-react/dist/simplebar.min.css";
 
 import { getCurrentUser } from "@/lib/session";
-import { SiteFooter } from "@/components/site-footer";
+import { SiteFooter } from "@/components/footer";
 import Navbar from "@/components/nav/navbar";
 import { UserAccountNav } from "@/components/nav/user-account-nav";
 
