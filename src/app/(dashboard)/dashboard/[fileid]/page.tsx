@@ -3,6 +3,7 @@ import PdfRenderer from "@/components/pdf-renderer";
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/session";
+import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { notFound, redirect } from "next/navigation";
 
 interface PageProps {
@@ -14,6 +15,7 @@ const File = async ({ params }: PageProps) => {
   const { fileid } = params;
 
   const user = await getCurrentUser();
+  const { isSubscribed } = await getUserSubscriptionPlan();
 
   if (!user) {
     redirect(authOptions?.pages?.signIn || "/login");
@@ -38,7 +40,7 @@ const File = async ({ params }: PageProps) => {
         </div>
 
         <div className="flex-[0.75] shrink-0 border border-gray-200 lg:w-96">
-          <ChatWrapper isSubscribed={false} fileId={file.id} />
+          <ChatWrapper isSubscribed={isSubscribed} fileId={file.id} />
         </div>
       </div>
     </div>
