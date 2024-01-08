@@ -21,6 +21,8 @@ interface BillingFormProps {
 const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
   const { toast } = useToast();
 
+  console.log({ subscriptionPlan });
+
   const { mutate: createStripeSession, isLoading } =
     api.createStripeSession.useMutation({
       onSuccess: ({ url }) => {
@@ -48,7 +50,10 @@ const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
           <CardHeader>
             <CardTitle>Subscription Plan</CardTitle>
             <CardDescription>
-              You are currently on the <strong>{subscriptionPlan.name}</strong>{" "}
+              You are currently on the{" "}
+              <strong>
+                {subscriptionPlan.isSubscribed ? subscriptionPlan.name : "free"}
+              </strong>{" "}
               plan.
             </CardDescription>
           </CardHeader>

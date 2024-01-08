@@ -4,7 +4,7 @@ import "simplebar-react/dist/simplebar.min.css";
 import { getCurrentUser } from "@/lib/session";
 import { SiteFooter } from "@/components/site-footer";
 import Navbar from "@/components/nav/navbar";
-import { UserAccountNav } from "@/components/user-account-nav";
+import { UserAccountNav } from "@/components/nav/user-account-nav";
 
 export default async function RootLayout({
   children,
@@ -12,14 +12,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const user = await getCurrentUser();
-  // todo fix isSubscribed
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
       <header className="sticky top-0 z-40 border-b">
         <div className="container flex h-16 items-center justify-between py-4">
           <Navbar />
-          <UserAccountNav user={user} isSubscribed={false} />
+          <UserAccountNav user={user} />
         </div>
       </header>
 
