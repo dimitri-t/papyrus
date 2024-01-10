@@ -15,7 +15,7 @@ export default async function RootLayout({
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <header className="sticky top-0 z-40 border-b">
+      <header className="bg-background/75 sticky top-0 z-40 border-b backdrop-blur-lg">
         <div className="container flex h-16 items-center justify-between py-4">
           <Navbar />
           <UserAccountNav user={user} />
