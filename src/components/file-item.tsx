@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import { File } from '@prisma/client';
-
 import { formatDate } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
-// import { FileOperations } from "@/components/File-operations"
 
 interface FileItemProps {
   file: Pick<File, 'id' | 'name' | 'createdAt'>;
@@ -14,7 +12,7 @@ export function FileItem({ file }: FileItemProps) {
     <div className="flex items-center justify-between p-4">
       <div className="grid gap-1">
         <Link
-          href={`/dashboard/${file.id}`}
+          href={`/file/${file.id}`}
           className="font-semibold hover:underline"
         >
           {file.name}
@@ -25,7 +23,6 @@ export function FileItem({ file }: FileItemProps) {
           </p>
         </div>
       </div>
-      {/* <FileOperations File={{ id: File.id, title: File.title }} /> */}
     </div>
   );
 }

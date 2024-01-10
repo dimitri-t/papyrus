@@ -9,7 +9,7 @@ export const dashboardConfig: DashboardConfig = {
   ],
   sidebarNav: [
     {
-      title: 'Files',
+      title: 'PDFs',
       href: '/dashboard',
       icon: 'page',
     },
@@ -17,11 +17,6 @@ export const dashboardConfig: DashboardConfig = {
       title: 'Billing',
       href: '/dashboard/billing',
       icon: 'billing',
-    },
-    {
-      title: 'Settings',
-      href: '/dashboard/settings',
-      icon: 'settings',
     },
   ],
 };

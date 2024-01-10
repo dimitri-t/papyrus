@@ -22,7 +22,7 @@ export const PLANS = [
     price: {
       amount: 10,
       priceIds: {
-        test: env.STRIPE_PRO_MONTHLY_PLAN_ID,
+        test: 'price_1OVPm5A09ASoBQ8h98kQjKtU',
         production: '',
       },
     },
