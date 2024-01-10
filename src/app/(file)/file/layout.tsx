@@ -1,5 +1,5 @@
 interface EditorProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export default function EditorLayout({ children }: EditorProps) {
@@ -7,5 +7,5 @@ export default function EditorLayout({ children }: EditorProps) {
     <div className="container mx-auto grid items-start gap-10 py-8">
       {children}
     </div>
-  )
+  );
 }

@@ -31,7 +31,7 @@ export default async function LoginPage() {
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>
-          <p className="text-muted-foreground text-sm">Sign in with Github </p>
+          <p className="text-sm text-muted-foreground">Sign in with Github </p>
         </div>
         <UserAuthForm />
       </div>

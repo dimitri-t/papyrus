@@ -46,7 +46,7 @@ const File = async ({ params }: PageProps) => {
             Back
           </>
         </Link>
-        <p className="text-muted-foreground text-sm">{file.name}</p>
+        <p className="text-sm text-muted-foreground">{file.name}</p>
       </div>
       <div className="max-w-8xl mx-auto w-full grow py-4 lg:flex xl:px-2">
         <div className="flex-1 xl:flex">

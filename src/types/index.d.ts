@@ -38,10 +38,6 @@ export type SiteConfig = {
   };
 };
 
-export type MarketingConfig = {
-  mainNav: MainNavItem[];
-};
-
 export type DashboardConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];

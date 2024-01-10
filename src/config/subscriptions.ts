@@ -1,5 +1,3 @@
-import { env } from '@/env';
-
 export const PLANS = [
   {
     name: 'Free',

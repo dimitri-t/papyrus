@@ -9,7 +9,7 @@ export default function DashboardLoading() {
       <DashboardHeader heading="PDFs" text="Create and manage your PDF files.">
         <FileUploadButton isSubscribed={false} />
       </DashboardHeader>
-      <div className="divide-border divide-y rounded-md border">
+      <div className="divide-y divide-border rounded-md border">
         <FileItem.Skeleton />
         <FileItem.Skeleton />
         <FileItem.Skeleton />
