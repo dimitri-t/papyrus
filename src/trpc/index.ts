@@ -31,7 +31,28 @@ export const appRouter = createTRPCRouter({
 
       if (!file) return { status: 'PENDING' as const };
 
-      return { status: file.uploadStatus };
+      // Check to see if the user has subscribed since uploading a file
+      const userSubscription = await getUserSubscriptionPlan();
+
+      if (userSubscription.isSubscribed) {
+        await db.file.update({
+          where: {
+            id: input.fileId,
+            userId: ctx.session.user.id,
+          },
+          data: {
+            uploadStatus: 'SUCCESS',
+          },
+        });
+
+        return {
+          status: 'SUCCESS',
+        };
+      } else {
+        return {
+          status: userSubscription.isSubscribed ? 'SUCCESS' : file.uploadStatus,
+        };
+      }
     }),
 
   getFile: protectedProcedure
