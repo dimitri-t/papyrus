@@ -33,7 +33,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
   const { mutate: startPolling } = api.getFile.useMutation({
     onSuccess: (file) => {
-      router.push(`/dashboard/${file.id}`);
+      router.push(`/file/${file.id}`);
     },
     retry: true,
     retryDelay: 500,
