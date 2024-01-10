@@ -1,8 +1,8 @@
-# Papyrus
+# Papyrus: AI-Powered Conversations with Your PDFs
 
-Papyrus is an open source SaaS platform build on Next.js 14. The application enables users to chat with their PDF files using the power of AI.
+Papyrus is an open-source SaaS platform leveraging AI for interactive PDF conversations. Built with Next.js 14, it showcases modern SaaS development using open-source technologies.
 
-This project has been built to see how a modern SaaS platform can be developed on modern open source technologies.
+**This project is an experiment and not production ready. Feel free to fork and play around with it!**
 
 ![Project Image](https://github.com/dimitri-t/papyrus/blob/main/public/thumbnail.png)
 
