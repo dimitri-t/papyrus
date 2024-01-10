@@ -18,7 +18,7 @@ export function FileItem({ file }: FileItemProps) {
           {file.name}
         </Link>
         <div>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             {formatDate(file.createdAt?.toDateString())}
           </p>
         </div>
