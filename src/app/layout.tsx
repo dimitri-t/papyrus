@@ -9,6 +9,7 @@ import { cn, constructMetadata } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -43,6 +44,7 @@ export default async function RootLayout({
             {children}
             <Toaster />
             <SpeedInsights />
+            <Analytics />
           </ThemeProvider>
         </TRPCReactProvider>
       </body>
