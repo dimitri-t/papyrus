@@ -3,48 +3,49 @@
 @tailwind utilities;
 
 /* Theme from https://ui.shadcn.com/themes */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
+    --background: 43 100% 99%;
+    --foreground: 255 30% 28%;
+    --card: 300 8% 95%;
+    --card-foreground: 255 30% 28%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
-    --primary: 24 9.8% 10%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
+    --primary: 246 94% 94%;
+    --primary-foreground: 255 30% 28%;
+    --secondary: 300 8% 95%;
+    --secondary-foreground: 0 0% 11%;
     --muted: 60 4.8% 95.9%;
     --muted-foreground: 25 5.3% 44.7%;
     --accent: 60 4.8% 95.9%;
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
+    --border: 256 30% 76%;
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
-    --card: 20 14.3% 4.1%;
+    --background: 0 0% 11%;
+    --foreground: 300 8% 95%;
+    --card: 0 0% 22%;
     --card-foreground: 60 9.1% 97.8%;
     --popover: 20 14.3% 4.1%;
-    --popover-foreground: 60 9.1% 97.8%;
-    --primary: 60 9.1% 97.8%;
+    --popover-foreground: 300 8% 95%;
+    --primary: 249 76% 79%;
     --primary-foreground: 24 9.8% 10%;
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
+    --secondary: 300 8% 95%;
+    --secondary-foreground: 0 0% 11%;
     --muted: 12 6.5% 15.1%;
     --muted-foreground: 24 5.4% 63.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 60 9.1% 97.8%;
+    --accent: 0 0% 22%;
+    --accent-foreground: 300 8% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
+    --border: 0 0% 22%;
     --input: 12 6.5% 15.1%;
     --ring: 24 5.7% 82.9%;
   }

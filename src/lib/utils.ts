@@ -21,7 +21,7 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-  title = 'Papyrus - the SaaS for professionals',
+  title = 'Papyrus - Supercharge your PDFs with AI',
   description = 'Papyrus is a SaaS platform that enables you to chat with your PDF files.',
   image = '/thumbnail.png',
   icons = '/favicon.ico',

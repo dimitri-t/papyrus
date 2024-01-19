@@ -52,7 +52,7 @@ const BillingForm = ({ subscriptionPlan }: BillingFormProps) => {
         </CardHeader>
 
         <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
-          <Button type="submit">
+          <Button type="submit" variant='default'>
             {isLoading ? (
               <Loader2 className="mr-4 h-4 w-4 animate-spin" />
             ) : null}

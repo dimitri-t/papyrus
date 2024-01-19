@@ -59,7 +59,7 @@ export default async function PricingPage() {
           </Link>
         </div>
       </div>
-      <div className="grid w-full items-start gap-10 rounded-lg border border-white p-10 md:grid-cols-[1fr_200px]">
+      <div className="grid w-full items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]">
         <div className="grid gap-6">
           <h3 className="text-xl font-bold sm:text-4xl">PRO plan</h3>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
