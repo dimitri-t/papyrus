@@ -36,7 +36,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
       router.push(`/file/${file.id}`);
     },
     retry: true,
-    retryDelay: 500,
+    retryDelay: 2000,
   });
 
   const startSimulatedProgress = () => {
