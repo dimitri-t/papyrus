@@ -50,14 +50,14 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className="container space-y-6 dark:bg-transparent">
+      <section className="container space-y-6">
         <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56">
           <div className="mb-12 px-6 lg:px-8">
             <div className="mx-auto max-w-2xl sm:text-center">
-              <h2 className="mt-2 text-4xl font-bold text-gray-900 sm:text-5xl">
+              <h2 className="mt-2 text-4xl font-bold sm:text-5xl">
                 Start chatting in minutes
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 text-lg">
                 Chatting to your PDF files has never been easier than with
                 Quill.
               </p>
@@ -70,7 +70,7 @@ export default function IndexPage() {
                 <span className="text-xl font-semibold">
                   Sign up for an account
                 </span>
-                <span className="mt-2 text-zinc-700">
+                <span className="mt-2">
                   Either starting out with a free plan or choose our{' '}
                   <Link
                     href="/pricing"
@@ -87,7 +87,7 @@ export default function IndexPage() {
                 <span className="text-xl font-semibold">
                   Upload your PDF file
                 </span>
-                <span className="mt-2 text-zinc-700">
+                <span className="mt-2">
                   We&apos;ll process your file and make it ready for you to chat
                   with.
                 </span>
@@ -98,7 +98,7 @@ export default function IndexPage() {
                 <span className="text-xl font-semibold">
                   Start asking questions
                 </span>
-                <span className="mt-2 text-zinc-700">
+                <span className="mt-2">
                   It&apos;s that simple. Try out Quill today - it really takes
                   less than a minute.
                 </span>
