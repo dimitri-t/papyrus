@@ -61,7 +61,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
       onDrop={async (acceptedFile) => {
         // Check file size
         const fileSize = acceptedFile[0]?.size ?? 0 * 1024 * 1024;
-        const allowedFileSize = (isSubscribed ? 64 : 16) * 1024 * 1024;
+        const allowedFileSize = (isSubscribed ? 16 : 4) * 1024 * 1024;
 
         if (fileSize > allowedFileSize) {
           return toast({
@@ -120,7 +120,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                   and drop
                 </p>
                 <p className="text-xs text-zinc-500">
-                  PDF (up to {isSubscribed ? '64' : '16'}MB)
+                  PDF (up to {isSubscribed ? '16' : '4'}MB)
                 </p>
               </div>
 

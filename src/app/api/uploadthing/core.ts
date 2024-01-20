@@ -33,6 +33,7 @@ const onUploadComplete = async ({
     url: string;
   };
 }) => {
+  console.log('START');
   const isFileExist = await db.file.findFirst({
     where: {
       key: file.key,
@@ -51,10 +52,16 @@ const onUploadComplete = async ({
     },
   });
 
+  console.log('CREATED FILE', createdFile);
+
   try {
+    console.log('FETCHING START');
+
     const response = await fetch(
       `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`
     );
+
+    console.log('RESPONSE', response);
 
     const blob = await response.blob();
 
@@ -68,6 +75,8 @@ const onUploadComplete = async ({
 
     const { isSubscribed } = subscriptionPlan;
 
+    console.log('AFTER');
+
     const isProExceeded =
       pagesAmt > PLANS.find((plan) => plan.name === 'Pro')!.pagesPerPdf;
     const isFreeExceeded =
@@ -75,6 +84,8 @@ const onUploadComplete = async ({
 
     // vectorize and index entire document
     const pineconeIndex = pinecone.Index('papyrus');
+
+    console.log('INDEXING', pineconeIndex);
 
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: env.OPENAI_API_KEY,
@@ -109,10 +120,10 @@ const onUploadComplete = async ({
 };
 
 export const ourFileRouter = {
-  freePlanUploader: f({ pdf: { maxFileSize: '16MB' } })
+  freePlanUploader: f({ pdf: { maxFileSize: '4MB' } })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
-  proPlanUploader: f({ pdf: { maxFileSize: '64MB' } })
+  proPlanUploader: f({ pdf: { maxFileSize: '16MB' } })
     .middleware(middleware)
     .onUploadComplete(onUploadComplete),
 } satisfies FileRouter;
