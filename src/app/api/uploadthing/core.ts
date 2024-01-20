@@ -106,6 +106,7 @@ const onUploadComplete = async ({
         },
       });
     } else {
+      console.log('LLLLL');
       await db.file.update({
         data: { uploadStatus: 'SUCCESS' },
         where: { id: createdFile.id },
