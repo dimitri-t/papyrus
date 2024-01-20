@@ -22,6 +22,9 @@ Papyrus is an open-source SaaS platform leveraging AI for interactive PDF conver
 - LangChain for Infinite AI Memory, along with **OpenAI**
 - Written in **TypeScript**
 
+## Features to develop
+[] Set up logging software
+
 ## Running Locally
 
 1. Install dependencies using pnpm:
