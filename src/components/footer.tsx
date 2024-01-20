@@ -3,7 +3,7 @@ import * as React from 'react';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { ModeToggle } from './mode-toggle';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -42,7 +42,8 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             .
           </p>
         </div>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
+        <ModeToggle />
       </div>
     </footer>
   );
