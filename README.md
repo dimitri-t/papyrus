@@ -2,23 +2,21 @@
 
 Papyrus is an open-source SaaS platform leveraging AI for interactive PDF conversations. Built with Next.js 14, it showcases modern SaaS development using open-source technologies.
 
-**This project is an experiment and not production ready. Feel free to fork and play around with it!**
-
 ![Project Image](https://github.com/dimitri-t/papyrus/blob/main/public/thumbnail.png)
 
 ## Features
 
-- Complete & functional SaaS
 - **Next.js 14**, featuring **`/app`** dir & **turborepo**
 - UI Components built using **Radix UI, shadcn & TailwindCSS**
-- Authentication using **NextAuth.js**
-- ORM using **Prisma**
-- Database on **PlanetScale**
-- File storage on **Uploadthing**
-- Subscriptions using **Stripe**
-- E2E Typesafe API using **tRPC & Zod**
-- Vector DB using **Pinecone**
+- **NextAuth.js** authentication
+- ORM - **Prisma**
+- Database - **PlanetScale**
+- File storage - **Uploadthing**
+- Subscriptions - **Stripe**
+- E2E Typesafe API - **tRPC & Zod**
+- Vector DB - **Pinecone**
 - Real-Time streaming API Responses
+- Optimistic UI updates
 - LangChain for Infinite AI Memory, along with **OpenAI**
 - Written in **TypeScript**
 
