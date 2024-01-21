@@ -8,8 +8,8 @@ Papyrus is an open-source SaaS platform leveraging AI for interactive PDF conver
 
 - **Next.js 14**, featuring **`/app`** dir & **turborepo**
 - UI Components built using **Radix UI, shadcn & TailwindCSS**
-- Authentication using **NextAuth.js**
-- ORM using **Prisma**
+- **NextAuth.js** authentication
+- ORM - **Prisma**
 - Database - **PlanetScale**
 - File storage - **Uploadthing**
 - Subscriptions - **Stripe**
