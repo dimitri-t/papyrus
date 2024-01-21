@@ -33,7 +33,6 @@ const onUploadComplete = async ({
     url: string;
   };
 }) => {
-  console.log('START');
   const isFileExist = await db.file.findFirst({
     where: {
       key: file.key,
@@ -52,16 +51,10 @@ const onUploadComplete = async ({
     },
   });
 
-  console.log('CREATED FILE', createdFile);
-
   try {
-    console.log('FETCHING START');
-
     const response = await fetch(
       `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`
     );
-
-    console.log('RESPONSE', response);
 
     const blob = await response.blob();
 
@@ -75,8 +68,6 @@ const onUploadComplete = async ({
 
     const { isSubscribed } = subscriptionPlan;
 
-    console.log('AFTER');
-
     const isProExceeded =
       pagesAmt > PLANS.find((plan) => plan.name === 'Pro')!.pagesPerPdf;
     const isFreeExceeded =
@@ -85,24 +76,16 @@ const onUploadComplete = async ({
     // vectorize and index entire document
     const pineconeIndex = pinecone.Index('papyrus');
 
-    console.log('INDEXING', pineconeIndex);
-
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: env.OPENAI_API_KEY,
     });
-
-    console.log('EMBEDDINGS', embeddings);
 
     await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
       pineconeIndex,
       namespace: createdFile.id,
     });
 
-    console.log('EMBEDDINGS AFTER');
-
     if ((isSubscribed && isProExceeded) || (!isSubscribed && isFreeExceeded)) {
-      console.log('FAILED');
-
       await db.file.update({
         data: {
           uploadStatus: 'FAILED',
@@ -112,15 +95,12 @@ const onUploadComplete = async ({
         },
       });
     } else {
-      console.log('SUCCESS');
-
       await db.file.update({
         data: { uploadStatus: 'SUCCESS' },
         where: { id: createdFile.id },
       });
     }
   } catch (error) {
-    console.log('FAILED 2');
     await db.file.update({
       data: { uploadStatus: 'FAILED' },
       where: { id: createdFile.id },

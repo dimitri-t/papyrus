@@ -8,7 +8,6 @@ import { useToast } from '@/components/ui/use-toast';
 import { useUploadThing } from '@/lib/uploadthing';
 import { api } from '@/trpc/react';
 import Dropzone from 'react-dropzone';
-// import { Progress } from './ui/progress';
 import { useRouter } from 'next/navigation';
 
 const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
@@ -137,10 +136,6 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
               {isUploading ? (
                 <div className="mx-auto mt-4 w-full max-w-xs">
-                  {/* <Progress
-                    value={uploadProgress}
-                    className="h-1 w-full bg-zinc-200 text-black"
-                  /> */}
                   {uploadProgress !== 100 ? (
                     <div className="flex items-center justify-center gap-1 pt-2 text-center text-sm text-zinc-700">
                       <Icons.spinner className="h-3 w-3 animate-spin" />
