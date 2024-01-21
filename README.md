@@ -25,6 +25,7 @@ Papyrus is an open-source SaaS platform leveraging AI for interactive PDF conver
 ## Features to develop
 
 - [ ] Set up logging software
+- [ ] Fix issue with Vercel serverless functions timing out after 10 secs
 
 ## Running Locally
 
