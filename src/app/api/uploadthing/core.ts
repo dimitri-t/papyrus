@@ -91,12 +91,18 @@ const onUploadComplete = async ({
       openAIApiKey: env.OPENAI_API_KEY,
     });
 
+    console.log('EMBEDDINGS', embeddings);
+
     await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
       pineconeIndex,
       namespace: createdFile.id,
     });
 
+    console.log('EMBEDDINGS AFTER');
+
     if ((isSubscribed && isProExceeded) || (!isSubscribed && isFreeExceeded)) {
+      console.log('FAILED');
+
       await db.file.update({
         data: {
           uploadStatus: 'FAILED',
@@ -106,13 +112,15 @@ const onUploadComplete = async ({
         },
       });
     } else {
-      console.log('LLLLL');
+      console.log('SUCCESS');
+
       await db.file.update({
         data: { uploadStatus: 'SUCCESS' },
         where: { id: createdFile.id },
       });
     }
   } catch (error) {
+    console.log('FAILED 2');
     await db.file.update({
       data: { uploadStatus: 'FAILED' },
       where: { id: createdFile.id },
