@@ -40,7 +40,7 @@ export default function IndexPage() {
       <section className="container space-y-6 py-32 dark:bg-transparent md:py-12">
         <div className="shadow-outer mx-auto max-w-6xl rounded-sm shadow-2xl shadow-primary">
           <Image
-            src="/papyrus-demo.png"
+            src="/thumbnail.png"
             alt="product preview"
             width={1345}
             height={858}
